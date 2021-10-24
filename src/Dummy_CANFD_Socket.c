@@ -12,9 +12,10 @@
 /*******************************************************************************
  * INCLUDES
  ******************************************************************************/
-#include <errno.h>
+#include "Dummy_CANFD_Error.h"
 #include "Dummy_CANFD_Config.h"
 #include "Dummy_CANFD_Socket.h"
+#include <errno.h>
 #include <linux/can/raw.h>
 #include <linux/can.h>
 #include <net/if.h>
@@ -71,8 +72,9 @@ int prepareCanInterface(){
 
     }
 
-    // Build the command for the interface configuration
-    // Note: This is a workaround because of the bad CAN interface driver
+    // Build the command for the interface configuration.
+    // Alternative: libsocketCAN library from Pengutronix
+    // https://github.com/lalten/libsocketcan
     if(CANFD){
 
         // Build the command for the CAN interface configuration
@@ -153,7 +155,7 @@ int setupSocket(int *const socketFD, struct sockaddr_can *const addr){
         return ERR_SOCKET_FAILED;
     }
 
-    // Set the interace name in the ifr
+    // Set the interface name in the ifr
     struct ifreq ifr;
     snprintf(ifr.ifr_name, sizeof(ifr.ifr_name), "%s", INTERFACE);
 

@@ -13,8 +13,7 @@
 /*******************************************************************************
  * DEFINES
  ******************************************************************************/
-#define PAYLOADSIZE  8          // The payload size of the frame CAN (0-8) CANFD (0-64)
-#define MAXCYCLES    100        // The amount of cycles that should be done
+#define FRAMEID      0x222      // The changed ID of the frames we are sending back
 
 #define CANFD        1          // Flag for enabling CANFD
 #define INTERFACE    "can0"     // The name of the interface that should be configured

@@ -18,25 +18,6 @@
 
 
 /*******************************************************************************
- * DEFINES
- ******************************************************************************/
-#define ERR_IF_NOT_FOUND            -1
-#define ERR_SOCKET_FAILED           -2
-#define ERR_SETUP_FAILED            -3
-#define ERR_LOG_WRITE               -4
-#define ERR_CLOCK_GETTIME           -5
-#define ERR_SEND_FAILED             -6
-#define ERR_RECV_FAILED             -7
-#define ERR_SETSOCKOPT_FAILED       -8
-#define ERR_MALLOC_FAILED           -9
-#define ERR_REALLOC_FAILED          -10
-#define ERR_IFDOWN_FAILED           -11
-#define ERR_IFUP_FAILED             -12
-#define ERR_IPLINKSET_FAILED        -13
-#define RET_E_OK                     0
-
-
-/*******************************************************************************
  * FUNCTION DECLARATIONS
  ******************************************************************************/
 
@@ -53,7 +34,7 @@ extern int prepareCanInterface();
  * @param socketFD  - Storage for the created socket descriptor
  * @param addr     -  Storage for the sockaddr_can of the socket
  */
-extern int setupSocket(int *const socketFD, struct sockaddr_can *const addr);
+extern int setupSocket(int *socketFD, struct sockaddr_can *addr);
 
 
 #endif //DUMMY_CANFD_SOCKET_H
