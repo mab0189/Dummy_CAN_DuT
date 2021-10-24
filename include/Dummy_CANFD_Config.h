@@ -6,8 +6,8 @@
  \version   1.0.0
  \date      24.10.2021
  ******************************************************************************/
-#ifndef DUMMY_CAN_DUT_DUMMY_CANFD_CONFIG_H
-#define DUMMY_CAN_DUT_DUMMY_CANFD_CONFIG_H
+#ifndef DUMMY_CANFD_CONFIG_H
+#define DUMMY_CANFD_CONFIG_H
 
 
 /*******************************************************************************
@@ -28,7 +28,7 @@
 #define VERBOSE      1          // Enables printing information during the send-recv cycle
 
 
-#endif //DUMMY_CAN_DUT_DUMMY_CANFD_CONFIG_H
+#endif //DUMMY_CANFD_CONFIG_H
 
 
 /*******************************************************************************

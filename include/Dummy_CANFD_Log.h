@@ -6,8 +6,8 @@
  \version   1.0.0
  \date      24.10.2021
  ******************************************************************************/
-#ifndef DUMMY_CAN_DUT_DUMMY_CANFD_LOG_H
-#define DUMMY_CAN_DUT_DUMMY_CANFD_LOG_H
+#ifndef DUMMY_CANFD_LOG_H
+#define DUMMY_CANFD_LOG_H
 
 
 /*******************************************************************************
@@ -42,7 +42,7 @@ extern void logElapsedTime(FILE *const file, struct timespec const *const startC
 extern void logRunInformation(FILE *const file, struct timespec const *const startTime, struct timespec const *const stopTime);
 
 
-#endif //DUMMY_CAN_DUT_DUMMY_CANFD_LOG_H
+#endif //DUMMY_CANFD_LOG_H
 
 
 /*******************************************************************************
