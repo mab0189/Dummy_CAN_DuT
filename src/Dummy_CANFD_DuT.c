@@ -1,9 +1,8 @@
 /*******************************************************************************
  \project   INFM_HIL_Interface
  \file      Dummy_CANFD_DuT.c
- \brief     This application configures a CAN/CANFD interface before creating a
-            raw CAN/CANFD socket. The dummy is a simple "echo server" that sends
-            the received CAN/CANFD frames back with a different ID. The dummy
+ \brief     This dummy application is a simple "echo server" that sends the
+            received CAN/CANFD frames back with a different ID. The dummy
             keeps running till it is terminated with CTRL + F.
  \author    Matthias Bank
  \version   1.0.0
@@ -37,11 +36,11 @@ volatile int keepRunning = 1; // Keep running till CTRL + F is pressed
  ******************************************************************************/
 
 /**
- * Process Termination signal handler
+ * Process termination signal
  *
  * @param signumber Signal number which occurred
  */
-static void HandleTerminationSignal(int signumber){
+static void handleTerminationSignal(int signumber){
 
     // Stop the application
     keepRunning = 0;
@@ -53,7 +52,6 @@ static void HandleTerminationSignal(int signumber){
  * @param retCode  - The return code
  * @param frame    - Storage for the generated frame
  * @param socketFD - The socket file descriptor
- * @param file     - The file descriptor
  */
 int shutdownHandler(int retCode, void *frame, int socketFD){
 
@@ -70,6 +68,21 @@ int shutdownHandler(int retCode, void *frame, int socketFD){
     exit(retCode);
 }
 
+/**
+ * Prints a buffer of hex values
+ *
+ * @param buffer     - The buffer containing the hex values
+ * @param bufferSize - The size of the buffer
+ */
+void printHexBuffer(unsigned char *const buffer, int bufferSize){
+
+    for(int index = 0; index < bufferSize; index++){
+        printf("%x", buffer[index]);
+    }
+
+    printf("\n");
+}
+
 int main(){
 
     struct sigaction sigAction;                     // Signal action for CTRL + F
@@ -78,7 +91,7 @@ int main(){
     struct sockaddr_can socketAddr;                 // Socket address
 
     int numbytes;                                   // Number of bytes that we sent or received
-    char buf[CANFD_MTU + 1];                        // Buffer for storing the received message payload
+    unsigned char buf[CANFD_MTU];                   // Buffer for storing the received message payload
 
     int recvID;                                     // The ID of the received frame
     void *frame = NULL;                             // Frame that is sent back
@@ -87,7 +100,7 @@ int main(){
 
 
     // Process termination signal for CTRL + F
-    sigAction.sa_handler = HandleTerminationSignal;
+    sigAction.sa_handler = handleTerminationSignal;
 
     if(sigaction(SIGINT, &sigAction, NULL) < 0){
         printf("Setting signal handler for SIGINT failed \n");
@@ -104,10 +117,10 @@ int main(){
 
     // Check which mode is selected and set values accordingly
     if(CANFD){
-        frameSize = sizeof(struct canfd_frame);
+        frameSize = CANFD_MTU;
         frame = malloc(frameSize);
     }else{
-        frameSize = sizeof(struct can_frame);
+        frameSize = CAN_MTU;
         frame = malloc(frameSize);
     }
 
@@ -123,7 +136,7 @@ int main(){
     while(keepRunning){
 
         if(VERBOSE){
-            printf("Blocking on receive!\n");
+            printf("Blocking on receive! \n");
         }
 
         // Receive data from the socket
@@ -133,8 +146,8 @@ int main(){
         if(numbytes == -1){
             perror("Error recv failed");
             shutdownHandler(ERR_RECV_FAILED, frame, socketFD);
-        }else if(numbytes != frameSize){
-            printf("Error received bytes are not equal to the frame size");
+        }else if(numbytes != CAN_MTU && numbytes != CANFD_MTU){
+            printf("Error received bytes are not equal to the size of a complete CAN/CANFD frame \n");
             shutdownHandler(ERR_RECV_FAILED, frame, socketFD);
         }
 
@@ -163,8 +176,8 @@ int main(){
             }
 
             buf[recvPayloadSize] = '\0';
-            printf("Got %d bytes total with ID 0x%x and %d bytes payload:\n\"%s\"\n",
-                   numbytes, recvID, recvPayloadSize, buf);
+            printf("Got %d bytes total with ID 0x%x and %d bytes payload: \n", numbytes, recvID, recvPayloadSize);
+            printHexBuffer(buf, recvPayloadSize);
         }
 
         // Send the frame
@@ -174,14 +187,14 @@ int main(){
         if(numbytes == -1){
             perror("Error sendto failed");
             shutdownHandler(ERR_SEND_FAILED, frame, socketFD);
-        }else if(numbytes != frameSize){
-            printf("Error send bytes are not equal to the frame size");
+        }else if(numbytes != CAN_MTU && numbytes != CANFD_MTU){
+            printf("Error send bytes are not equal to the size of a complete CAN/CANFD frame \n");
             shutdownHandler(ERR_SEND_FAILED, frame, socketFD);
         }
 
         if(VERBOSE){
-            printf("Sent %d bytes total with ID 0x%x and %d bytes payload:\n\"%s\"\n",
-                   numbytes, FRAMEID, recvPayloadSize, buf);
+            printf("Sent %d bytes total with ID 0x%x and %d bytes payload: \n", numbytes, FRAMEID, recvPayloadSize);
+            printHexBuffer(buf, recvPayloadSize);
         }
 
     }
