@@ -22,10 +22,6 @@
 #define ERR_RECV_FAILED             -7
 #define ERR_SETSOCKOPT_FAILED       -8
 #define ERR_MALLOC_FAILED           -9
-#define ERR_REALLOC_FAILED          -10
-#define ERR_IFDOWN_FAILED           -11
-#define ERR_IFUP_FAILED             -12
-#define ERR_IPLINKSET_FAILED        -13
 
 
 #endif //DUMMY_CANFD_ERROR_H

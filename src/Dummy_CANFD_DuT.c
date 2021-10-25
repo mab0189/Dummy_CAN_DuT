@@ -94,14 +94,6 @@ int main(){
         shutdownHandler(ERR_SIGACTION_FAILED, frame, socketFD);
     }
 
-    // Prepare the CAN/CANFD interface
-    if(prepareCanInterface() != 0){
-        printf("Error could not prepare the interface %s\n", INTERFACE);
-        shutdownHandler(ERR_SETUP_FAILED, frame, socketFD);
-    }
-
-    printf("Finished preparing the interface %s\n", INTERFACE);
-
     // Set up the socket
     if(setupSocket(&socketFD, &socketAddr) != 0){
         printf("Error could not setup the socket \n");

@@ -1,8 +1,7 @@
 /*******************************************************************************
  \project   INFM_HIL_Interface
  \file      Dummy_CANFD_Socket.c
- \brief     Provides functions for the configuration of an CAN/CANFD interface
-            and the setup of an CAN/CANFD socket.
+ \brief     Provides functions for the setup of an raw CAN/CANFD socket.
  \author    Matthias Bank
  \version   1.0.0
  \date      24.10.2021
@@ -21,7 +20,6 @@
 #include <net/if.h>
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -29,120 +27,6 @@
 /*******************************************************************************
  * FUNCTION DEFINITIONS
  ******************************************************************************/
-
-int prepareCanInterface(){
-
-    int foundIF = 0;
-    char line[255];
-    FILE *file = fopen("/run/network/ifstate", "r");
-
-    // Read each line in the file to check if the interface name is present
-    while(fgets(line, sizeof(line), file) != NULL){
-
-        if(strstr(line, INTERFACE) != NULL) {
-            foundIF = 1;
-            break;
-        }
-
-    }
-
-    int size;
-    char *command = NULL;
-
-    // Check if the interface is configured
-    if(foundIF){
-
-        // Build the command for setting the interface down
-        size = snprintf(command, 0, "/sbin/ifdown %s", INTERFACE) + 1;
-        command = malloc(size);
-
-        // Error handling
-        if(command == NULL){
-            printf("Error could not allocate memory\n");
-            return ERR_MALLOC_FAILED;
-        }
-
-        snprintf(command, size, "/sbin/ifdown %s", INTERFACE);
-
-        // Bring the interface down for configuration
-        if(system(command) == -1){
-            printf("Error could not bring the interface %s down\n", INTERFACE);
-            return ERR_IFDOWN_FAILED;
-        }
-
-    }
-
-    // Build the command for the interface configuration.
-    // Alternative: libsocketCAN library from Pengutronix
-    // https://github.com/lalten/libsocketcan
-    if(CANFD){
-
-        // Build the command for the CAN interface configuration
-        size = snprintf(command, 0, "sudo ip link set %s up type can bitrate %d sample-point %.3f"
-                                    " dbitrate %d dsample-point %.3f fd on", INTERFACE, BITRATE, SAMPLEPOINT, DBITRATE, DSAMPLEPOINT) + 1;
-
-        command = realloc(command, size);
-
-        // Error handling
-        if(command == NULL){
-            printf("Error could not reallocate memory\n");
-            return ERR_REALLOC_FAILED;
-        }
-
-        size = snprintf(command, size, "sudo ip link set %s up type can bitrate %d sample-point %.3f"
-                                       " dbitrate %d dsample-point %.3f fd on", INTERFACE, BITRATE, SAMPLEPOINT, DBITRATE, DSAMPLEPOINT);
-
-    }else{
-
-        // Build the command for the CANFD interface configuration
-        size = snprintf(command, 0, "sudo ip link set %s up type can bitrate %d sample-point %.3f"
-                                    " dbitrate %d dsample-point %.3f fd off", INTERFACE, BITRATE, SAMPLEPOINT, DBITRATE, DSAMPLEPOINT) + 1;
-
-        command = realloc(command, size);
-
-        // Error handling
-        if(command == NULL){
-            printf("Error could not reallocate memory\n");
-            return ERR_MALLOC_FAILED;
-        }
-
-        size = snprintf(command, size, "sudo ip link set %s up type can bitrate %d sample-point %.3f"
-                                       " dbitrate %d dsample-point %.3f fd off", INTERFACE, BITRATE, SAMPLEPOINT, DBITRATE, DSAMPLEPOINT);
-
-    }
-
-    // Configure the interface
-    if(system(command) == -1){
-        printf("Error could not configure the interface %s\n", INTERFACE);
-        return ERR_IPLINKSET_FAILED;
-    }
-
-    // Build the command for setting the interface up
-    size = snprintf(command, 0, "/sbin/ifup %s", INTERFACE) + 1;
-
-    command = realloc(command, size);
-
-    // Error handling
-    if(command == NULL){
-        printf("Error could not reallocate memory\n");
-        return ERR_MALLOC_FAILED;
-    }
-
-    snprintf(command, size, "/sbin/ifup %s", INTERFACE);
-
-    // Bring the interface down for configuration
-    if(system(command) == -1){
-        printf("Error could not bring the interface %s up\n", INTERFACE);
-        return ERR_IFUP_FAILED;
-    }
-
-    // Free the memory
-    if(command != NULL){
-        free(command);
-    }
-
-    return RET_E_OK;
-}
 
 int setupSocket(int *const socketFD, struct sockaddr_can *const addr){
 

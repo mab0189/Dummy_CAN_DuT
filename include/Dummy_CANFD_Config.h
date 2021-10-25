@@ -18,12 +18,6 @@
 #define CANFD        1          // Flag for enabling CANFD
 #define INTERFACE    "can0"     // The name of the interface that should be configured
 
-#define BITRATE      500000     // The bitrate value in baud
-#define SAMPLEPOINT  0.700      // The sample point value
-
-#define DBITRATE     2000000    // The dbitrate value in baud
-#define DSAMPLEPOINT 0.800      // The dsample point value
-
 #define VERBOSE      1          // Enables printing information during the send-recv cycle
 
 
