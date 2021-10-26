@@ -1,8 +1,7 @@
 /*******************************************************************************
  \project   INFM_HIL_Interface
  \file      Dummy_CANFD_Socket.h
- \brief     Provides functions for the configuration of an CAN/CANFD interface
-            and the setup of an CAN/CANFD socket.
+ \brief     Provides functions for the setup of an raw CAN/CANFD socket.
  \author    Matthias Bank
  \version   1.0.0
  \date      24.10.2021
@@ -20,12 +19,6 @@
 /*******************************************************************************
  * FUNCTION DECLARATIONS
  ******************************************************************************/
-
-/**
- * Prepares the bitrate of the CAN/CANFD interface
- */
-extern int prepareCanInterface();
-
 
 /**
  * Creates and binds a CAN/CANFD socket on an interface.
