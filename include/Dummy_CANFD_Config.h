@@ -18,7 +18,7 @@
 #define CANFD        0          // Flag for enabling CANFD
 #define INTERFACE    "vcan0"    // The name of the interface that should be configured
 
-#define VERBOSE      1          // Enables printing information during the send-recv cycle
+#define VERBOSE      1          // Enables printing information during the recv-send loop
 
 
 #endif //DUMMY_CANFD_CONFIG_H

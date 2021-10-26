@@ -3,7 +3,7 @@
  \file      Dummy_CANFD_DuT.c
  \brief     This dummy application is a simple "echo server" that sends the
             received CAN/CANFD frames back with a different ID. The dummy
-            keeps running till it is terminated with CTRL + F.
+            keeps running till it is terminated with "CTRL + C".
  \author    Matthias Bank
  \version   1.0.0
  \date      24.10.2021
@@ -93,7 +93,7 @@ int main(){
     int numbytes;                                   // Number of bytes that we sent or received
     unsigned char buf[CANFD_MTU];                   // Buffer for storing the received message payload
 
-    int recvID;                                     // The ID of the received frame
+    unsigned int recvID;                            // The ID of the received frame
     void *frame = NULL;                             // Frame that is sent back
     size_t frameSize;                               // The size of the frame that is being received
     int recvPayloadSize;                            // The size of the payload of the received frame
