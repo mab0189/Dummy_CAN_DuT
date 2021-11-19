@@ -36,6 +36,6 @@ make
 // Start the dummy application
 ./Dummy_CAN_DuT
 
-// Send a frame on the virtual CAN interface
+// Open another terminal and send a frame on the virtual CAN interface
 cansend vcan0 123#DEADBEEF
 ```
