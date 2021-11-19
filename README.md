@@ -17,13 +17,24 @@ The following parameters can be changed in the Dummy_CANFD_Config.h file:
 To test the dummy you can use a virtual CAN interface:
 
 ```
+// Install the can-utils 
+sudo apt-get install can-utils
+
+// Modprobe is needed in the case the driver is not loaded.
+modprobe vcan
+
 // Create a virtual CAN interface
 ip link add dev vcan0 type vcan
 
 // Bring the interface up and running
 ip link set vcan0 up
 
+// Compile the project
+cmake .
+make 
+
 // Start the dummy application
+./Dummy_CAN_DuT
 
 // Send a frame on the virtual CAN interface
 cansend vcan0 123#DEADBEEF
