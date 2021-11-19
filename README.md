@@ -20,13 +20,13 @@ To test the dummy you can use a virtual CAN interface:
 // Install the can-utils 
 sudo apt-get install can-utils
 
-// Modprobe is needed in the case the driver is not loaded.
+// Modprobe is needed in the case the vcan driver is not loaded.
 modprobe vcan
 
 // Create a virtual CAN interface
 ip link add dev vcan0 type vcan
 
-// Bring the interface up and running
+// Set the interface up and running
 ip link set vcan0 up
 
 // Compile the project
