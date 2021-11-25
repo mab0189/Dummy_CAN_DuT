@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: langroodi/doxygenize@v1.4
+    - uses: langroodi/doxygenize@v1.3
       with:
         htmloutput:    './doc/html/'
         ghpagesbranch: 'gh-pages'
