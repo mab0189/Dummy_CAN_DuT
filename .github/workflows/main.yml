@@ -9,6 +9,7 @@ jobs:
     steps:
     - uses: langroodi/doxygenize@v1.4
       with:
+        doxygenconf:   './doc/Doxyfile'
         htmloutput:    './doc/html/'
         ghpagesbranch: 'gh-pages'
         ghpagesdir:    './docs/'
