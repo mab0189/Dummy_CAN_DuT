@@ -9,6 +9,8 @@
 #ifndef DUMMY_CANFD_ERROR_H
 #define DUMMY_CANFD_ERROR_H
 
+/** @file */
+
 
 /*******************************************************************************
  * DEFINES

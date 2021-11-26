@@ -9,16 +9,24 @@
 #ifndef DUMMY_CANFD_CONFIG_H
 #define DUMMY_CANFD_CONFIG_H
 
+/** @file */
+
 
 /*******************************************************************************
  * DEFINES
  ******************************************************************************/
-#define FRAMEID      0x222      // The changed ID of the frames we are sending back
 
-#define CANFD        0          // Flag for enabling CANFD
-#define INTERFACE    "vcan0"    // The name of the interface that should be configured
+/** The changed ID of the frames we are sending back. */
+#define FRAMEID      0x222      
 
-#define VERBOSE      1          // Enables printing information during the recv-send loop
+/** Flag for enabling CANFD support. */
+#define CANFD        0         
+
+/** The name of the interface that should be configured. */
+#define INTERFACE    "vcan0"
+
+/** Enables printing information during the recv-send loop. */
+#define VERBOSE      1
 
 
 #endif //DUMMY_CANFD_CONFIG_H
