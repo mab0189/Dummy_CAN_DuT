@@ -25,8 +25,8 @@
  * Creates and binds a CAN/CANFD socket on an interface.
  * Support for CANFD frames can be enabled if needed.
  *
- * @param socketFD  - Storage for the created socket descriptor
- * @param addr     -  Storage for the sockaddr_can of the socket
+ * @param socketFD - Storage for the created socket descriptor.
+ * @param addr     - Storage for the sockaddr_can of the socket.
  */
 extern int setupSocket(int *socketFD, struct sockaddr_can *addr);
 

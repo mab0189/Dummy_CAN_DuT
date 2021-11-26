@@ -29,7 +29,9 @@
 /*******************************************************************************
  * VARIABLES
  ******************************************************************************/
-volatile int keepRunning = 1; // Keep running till CTRL + F is pressed
+
+/** Keep running till CTRL + F is pressed. */
+volatile int keepRunning = 1;
 
 
 /*******************************************************************************
@@ -37,9 +39,9 @@ volatile int keepRunning = 1; // Keep running till CTRL + F is pressed
  ******************************************************************************/
 
 /**
- * Process termination signal
+ * Process termination signal.
  *
- * @param signumber Signal number which occurred
+ * @param signumber - Signal number which occurred.
  */
 static void handleTerminationSignal(int signumber){
 
@@ -48,11 +50,11 @@ static void handleTerminationSignal(int signumber){
 }
 
 /**
- * Handles the shutdown procedure
+ * Handles the shutdown procedure of the CAN_DUMMY_DuT.
  *
- * @param retCode  - The return code
- * @param frame    - Storage for the generated frame
- * @param socketFD - The socket file descriptor
+ * @param retCode  - The return code.
+ * @param frame    - Storage for the generated frame.
+ * @param socketFD - The socket file descripto.
  */
 int shutdownHandler(int retCode, void *frame, int socketFD){
 
@@ -70,10 +72,10 @@ int shutdownHandler(int retCode, void *frame, int socketFD){
 }
 
 /**
- * Prints a buffer of hex values
+ * Prints a buffer of hex values to the console.
  *
- * @param buffer     - The buffer containing the hex values
- * @param bufferSize - The size of the buffer
+ * @param buffer     - The buffer containing the hex values.
+ * @param bufferSize - The size of the buffer.
  */
 void printHexBuffer(unsigned char *const buffer, int bufferSize){
 
