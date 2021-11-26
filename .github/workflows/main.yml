@@ -1,4 +1,4 @@
-name: Generate the Doxygen documentation and publish it to the Github Pages
+name: Generate the Doxygen documentation and publish it to the GitHub Pages
 on:
   push:
     branches:
@@ -7,8 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: langroodi/doxygenize@v1.4
-      with:
-        htmloutput:    './doc/html/'
-        ghpagesbranch: 'gh-pages'
-        ghpagesdir:    './docs/'
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate Doxygen and publish to GitHub
+        uses: langroodi/doxygenize@v1.4
+        with:
+          htmloutput:    './doc/html/'
+          ghpagesbranch: 'gh-pages'
+          ghpagesdir:    './docs/'
