@@ -1,7 +1,5 @@
 # Dummy_CAN_DuT
-
-## Overview
-This dummy application is a simple "echo server" that sends the received CAN/CANFD frames back with a different ID. 
+This dummy application is a simple "echo server" that sends the received CAN/CANFD frames back with a different CAN ID. 
 The dummy keeps running till it is terminated with "CTRL + C".
 
 ## Configuration
@@ -39,3 +37,6 @@ make
 // Open another terminal and send a frame on the virtual CAN interface
 cansend vcan0 123#DEADBEEF
 ```
+
+## Documentation
+For further information look at the [documentation](https://mab0189.github.io/Dummy_CAN_DuT/index.html).
