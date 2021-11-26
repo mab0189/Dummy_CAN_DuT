@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verbose_6',['VERBOSE',['../Dummy__CANFD__Config_8h.html#a42f8c497a1968074f38bf5055c650dca',1,'Dummy_CANFD_Config.h']]]
+  ['interface_16',['INTERFACE',['../Dummy__CANFD__Config_8h.html#aefb2aa75be4323fe06eb3ec8394bdfc7',1,'Dummy_CANFD_Config.h']]]
 ];
