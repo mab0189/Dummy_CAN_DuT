@@ -12,6 +12,5 @@ jobs:
       - name: Generate Doxygen and publish to GitHub
         uses: langroodi/doxygenize@v1.4
         with:
-          htmloutput:    './doc/html/'
           ghpagesbranch: 'gh-pages'
           ghpagesdir:    './docs/'
