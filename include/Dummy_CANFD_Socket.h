@@ -6,6 +6,7 @@
  \version   1.0.0
  \date      24.10.2021
  ******************************************************************************/
+/** @file */
 #ifndef DUMMY_CANFD_SOCKET_H
 #define DUMMY_CANFD_SOCKET_H
 
