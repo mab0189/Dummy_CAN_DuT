@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Dummy_CAN_DuT: Main Page</title>
+<title>Dummy_CAN_DuT: Dummy_CAN_DuT</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -60,11 +60,54 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Dummy_CAN_DuT Documentation</div>  </div>
+<div class="title">Dummy_CAN_DuT </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a>This dummy application is a simple "echo server" that sends the received CAN/CANFD frames back with a different CAN ID. The dummy keeps running till it is terminated with "CTRL + C".</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Configuration</h1>
+<p>The following parameters can be changed in the <a class="el" href="Dummy__CANFD__Config_8h_source.html">Dummy_CANFD_Config.h</a> file: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">FRAMEID   </td><td class="markdownTableBodyNone">The frame ID that the dummy is using to send the frames back    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CANFD   </td><td class="markdownTableBodyNone">Enables or disables the support for CANFD    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INTERFACE   </td><td class="markdownTableBodyNone">The name of the interface that should be used    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">VERBOSE   </td><td class="markdownTableBodyNone">Enables output to the console during the receive-send loop   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Example</h1>
+<p>To test the dummy you can use a virtual CAN interface:</p>
+<div class="fragment"><div class="line">// Install the can-utils </div>
+<div class="line">sudo apt-get install can-utils</div>
+<div class="line"> </div>
+<div class="line">// Modprobe is needed in the case the vcan driver is not loaded.</div>
+<div class="line">modprobe vcan</div>
+<div class="line"> </div>
+<div class="line">// Create a virtual CAN interface</div>
+<div class="line">ip link add dev vcan0 type vcan</div>
+<div class="line"> </div>
+<div class="line">// Set the interface up and running</div>
+<div class="line">ip link set vcan0 up</div>
+<div class="line"> </div>
+<div class="line">// Compile the project</div>
+<div class="line">cmake .</div>
+<div class="line">make </div>
+<div class="line"> </div>
+<div class="line">// Start the dummy application</div>
+<div class="line">./Dummy_CAN_DuT</div>
+<div class="line"> </div>
+<div class="line">// Open another terminal and send a frame on the virtual CAN interface</div>
+<div class="line">cansend vcan0 123#DEADBEEF</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Documentation</h1>
+<p>For further information look at the <a href="https://mab0189.github.io/Dummy_CAN_DuT/index.html">documentation</a>. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
