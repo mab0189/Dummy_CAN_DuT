@@ -19,7 +19,7 @@ To test the dummy you can use a virtual CAN interface:
 // Install the can-utils 
 sudo apt-get install can-utils
 
-// Modprobe is needed in the case the vcan driver is not loaded.
+// Modprobe is needed in the case the vcan module is not loaded.
 modprobe vcan
 
 // Create a virtual CAN interface
@@ -44,3 +44,4 @@ For further information look at the [documentation](https://mab0189.github.io/Du
 
 ## Helpful links
 [SocketCAN documentation](https://www.kernel.org/doc/Documentation/networking/can.txt)
+[SocketCAN userspace utilities and tools](https://github.com/linux-can/can-utils)
