@@ -43,5 +43,5 @@ cansend vcan0 123#DEADBEEF
 For further information look at the [documentation](https://mab0189.github.io/Dummy_CAN_DuT/index.html).
 
 ## Helpful links
-[SocketCAN documentation](https://www.kernel.org/doc/Documentation/networking/can.txt)
-[SocketCAN userspace utilities and tools](https://github.com/linux-can/can-utils)
+- [SocketCAN documentation](https://www.kernel.org/doc/Documentation/networking/can.txt)
+- [SocketCAN userspace utilities and tools](https://github.com/linux-can/can-utils)
