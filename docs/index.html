@@ -102,7 +102,12 @@ Example</h1>
 <div class="line">// Start the dummy application</div>
 <div class="line">./Dummy_CAN_DuT</div>
 <div class="line"> </div>
-<div class="line">// Open another terminal and send a frame on the virtual CAN interface</div>
+<div class="line">// To see the CAN/CANFD messages that are send by the Dummy_CAN_DuT on </div>
+<div class="line">// the virtual CAN interface open a terminal and use the candump tool.</div>
+<div class="line">candump vcan0</div>
+<div class="line"> </div>
+<div class="line">// Open another terminal and send a frame over the virtual CAN interface</div>
+<div class="line">// to the Dummy_CAN_DuT with the use of the cansend tool.</div>
 <div class="line">cansend vcan0 123#DEADBEEF</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Documentation</h1>
